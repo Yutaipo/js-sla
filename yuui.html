@@ -1,0 +1,41 @@
+let palavra;
+
+function setup() {
+  createCanvas(400, 400);
+
+  palavra = palavraAleatoria();
+}
+
+function palavraAleatoria() {
+  let palavras = ["Coquette", "Coquetta", "Soft"];
+  return random(palavras); //explica a finalidade da função em que ele foi inserido, quando chamada em outra, no caso randomizar as palavras que irão aparecer
+}
+
+function inicializaCores() {
+  background('pink');
+  fill("white"); //determina a cor do texto
+  textSize(64);
+  textAlign(CENTER, CENTER); 
+}
+
+function palavraParcial(minimo, maximo) {
+  let quantidade = map(mouseX, minimo, maximo, 1, palavra.length); //determina uma sequencia de elementos que deve ser seguida, tambem relaciona o tamanho do quadro com a quantidade de letras, toda vez que o mouse for levado para a direita, mais letras irão aparecer
+  let parcial = palavra.substring(0, quantidade); 
+  
+  return parcial;
+}
+function draw() { //essa função muda constantemente,determina que o desenho, neste caso o texto, seguirá os elementos corretos, nesse caso o '0' e o 'width'
+  inicializaCores();
+
+  let texto = palavraParcial(0, width);
+  text(texto, 200, 200);
+}
+
+function modoNoturno(horario) {
+  if (horario > 18) {// isso verifica se o horário é maior que 18, caso for, ira lhe dar um lembrete para ligar o modo noturno, caso o horário for menor que 18, ira lembrá-lo que não é necessário ligar o modo noturno
+    console.log("Você precisa ligar o modo escuro!");
+  } else {
+    console.log("Modo escuro não é necessário neste momento.");
+  }
+}
+
